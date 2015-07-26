@@ -58,6 +58,21 @@ elif [ "$proxy_required" = "no" ];
 	echo "*** Proxy server settings are not required, skipping ***"
 fi
 
+#check if Client Passphrases should be set
+if [ "$client_passphrases_required" = "yes" ];
+	then
+	echo "*** Setting Client Passphreases ***"
+	sed -i "/client_passphrases/c\$onf['client_passphrases'] = array($client_passphrases);" /www/munkireport/config.php # set the client passphrase(s)
+fi
+
+echo "*** Setting Temperature Unit to $temperature_unit ***"
+echo ""
+sed -i "/temperature_unit/c\$conf['temperature_unit'] = '$temperature_unit';" /www/munkireport/config.php # Set the DB Password
+
+echo "*** Setting Keep Previous Displays to $keep_previous_displays ***"
+echo ""
+sed -i "/keep_previous_displays/c\$conf['keep_previous_displays'] = '$keep_previous_displays';" /www/munkireport/config.php # Set the DB Password
+
 
 # Fire up PHP and then start Nginx in non daemon mode so docker has something to keep running
 echo ""

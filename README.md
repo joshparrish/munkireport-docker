@@ -25,7 +25,11 @@ Several options, such as the timezone and admin password are customizable using 
 * ``DB_PASS``: The default user password to access the database is admin. Change here as per your needs.
 * ``DB_SERVER``: The FQDN or IP address of the database server. ie sql.test.internal
 * ``MR_SITENAME``: Customise the site name for Munki Report.
-* ``MR_TIMEZONE``: Customise the timezone, default is Australia/Sydney
+* ``MR_TIMEZONE``: Customise the timezone, default is America/Los_Angeles
+* ``client_passphrases_required``: Enable client passphrases (YES OR NO) defaults to NO
+* ``client_passphrases``: Sets the client passphrases (needs testing, should be 'phrase1','phrase2')
+* ``temperature_unit``: Sets temperature Unit (C OR F) defaults to F
+* ``keep_previous_displays``: Keep Previous Displays (TRUE OR FALSE) defaults to FALSE
 
 Munki Report is able to perform warranty lookups, however if your Munki Report server is behind a proxy this may fail.
 To avoid this, we can provide proxy server information as variables when starting the container or providing defaults

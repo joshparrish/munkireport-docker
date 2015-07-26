@@ -18,7 +18,10 @@ ENV DB_USER admin
 ENV DB_PASS password
 ENV DB_SERVER sql.test.internal
 ENV MR_SITENAME MunkiReport
-ENV MR_TIMEZONE Australia/Sydney
+ENV MR_TIMEZONE America/Los_Angeles
+ENV TEMPERATURE_UNIT F
+ENV CLIENT_PASSPHRASES_REQUIRED NO
+ENV KEEP_PREVIOUS_DISPLAYS FALSE
 
 # Define proxy setting variables for Munki report
 # set this to mod1, mod2 or no depending upon your proxy server needs. See the Readme for more info.
