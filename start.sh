@@ -73,6 +73,10 @@ echo "*** Setting Keep Previous Displays to $keep_previous_displays ***"
 echo ""
 sed -i "/keep_previous_displays/c\$conf['keep_previous_displays'] = '$keep_previous_displays';" /www/munkireport/config.php # Set the DB Password
 
+echo "*** Setting Active Modules to $modules ***"
+echo ""
+sed -i "/modules/c\$conf['modules'] = array($modules);" /www/munkireport/config.php # Set the DB Password
+
 
 # Fire up PHP and then start Nginx in non daemon mode so docker has something to keep running
 echo ""

@@ -30,6 +30,7 @@ Several options, such as the timezone and admin password are customizable using 
 * ``client_passphrases``: Sets the client passphrases (needs testing, should be 'phrase1','phrase2')
 * ``temperature_unit``: Sets temperature Unit (C OR F) defaults to F
 * ``keep_previous_displays``: Keep Previous Displays (TRUE OR FALSE) defaults to FALSE
+* ``modules``: Set active Modules (needs testing, should be 'phrase1','phrase2') defaults to munkireport
 
 Munki Report is able to perform warranty lookups, however if your Munki Report server is behind a proxy this may fail.
 To avoid this, we can provide proxy server information as variables when starting the container or providing defaults

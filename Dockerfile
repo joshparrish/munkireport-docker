@@ -22,6 +22,7 @@ ENV MR_TIMEZONE America/Los_Angeles
 ENV TEMPERATURE_UNIT F
 ENV CLIENT_PASSPHRASES_REQUIRED NO
 ENV KEEP_PREVIOUS_DISPLAYS FALSE
+ENV MODULES 'munkireport'
 
 # Define proxy setting variables for Munki report
 # set this to mod1, mod2 or no depending upon your proxy server needs. See the Readme for more info.
