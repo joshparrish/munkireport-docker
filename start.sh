@@ -59,24 +59,23 @@ elif [ "$proxy_required" = "no" ];
 fi
 
 #check if Client Passphrases should be set
-if [ "$client_passphrases_required" = "yes" ];
+if [ "$MR_CLIENT_PASSPHRASES_REQUIRED" = "yes" ];
 	then
 	echo "*** Setting Client Passphreases ***"
-	sed -i "/client_passphrases/c\$onf['client_passphrases'] = array($client_passphrases);" /www/munkireport/config.php # set the client passphrase(s)
+	sed -i "/client_passphrases/c\$onf['client_passphrases'] = array($CLIENT_PASSHRASES);" /www/munkireport/config.php # set the client passphrase(s)
 fi
 
-echo "*** Setting Temperature Unit to $temperature_unit ***"
+echo "*** Setting Temperature Unit to $MR_TEMPERATURE_UNIT ***"
 echo ""
-sed -i "/temperature_unit/c\$conf['temperature_unit'] = '$temperature_unit';" /www/munkireport/config.php # Set the DB Password
+sed -i "/temperature_unit/c\$conf['temperature_unit'] = '$MR_TEMPERATURE_UNIT';" /www/munkireport/config.php # Set the DB Password
 
-echo "*** Setting Keep Previous Displays to $keep_previous_displays ***"
+echo "*** Setting Keep Previous Displays to $MR_KEEP_PREVIOUS_DISPLAYS ***"
 echo ""
-sed -i "/keep_previous_displays/c\$conf['keep_previous_displays'] = '$keep_previous_displays';" /www/munkireport/config.php # Set the DB Password
+sed -i "/keep_previous_displays/c\$conf['keep_previous_displays'] = '$MR_KEEP_PREVIOUS_DISPLAYS';" /www/munkireport/config.php # Set the DB Password
 
-echo "*** Setting Active Modules to $modules ***"
+echo "*** Setting Active Modules to $MR_MODULES ***"
 echo ""
-sed -i "/modules/c\$conf['modules'] = array($modules);" /www/munkireport/config.php # Set the DB Password
-
+sed -i "/modules/c\$conf['modules'] = $MR_MODULES;" /www/munkireport/config.php 
 
 # Fire up PHP and then start Nginx in non daemon mode so docker has something to keep running
 echo ""
