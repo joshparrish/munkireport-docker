@@ -70,4 +70,6 @@ $ docker run -d -p 80:80 -e DB_NAME=munkireport -e DB_USER=admin -e DB_PASS=admi
 ```
 
 If you need proxy server support, either bake them into your Dockerfile, or provide them as environmentals when starting your container
-by passing them with the -e flag, just like the variables shown above for the DB serttings.
+by passing them with the -e flag, just like the variables shown above for the DB settings.
+
+###Thanks to [Calum Hunter]: https://github.com/hunty1/munkireport-docker for his original work on which this is based
