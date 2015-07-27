@@ -20,10 +20,6 @@ MunkiReport PHP version 2.4.3 (June 2, 2015) - Tag 2.4.3
 
 Several options, such as the timezone and admin password are customizable using environment variables.
 
-* ``DB_NAME``: The default database name is munkireport, if you have a different database name. Set it here as per your needs.
-* ``DB_USER``: The default user to access the database with is admin. Change here as per your needs.
-* ``DB_PASS``: The default user password to access the database is admin. Change here as per your needs.
-* ``DB_SERVER``: The FQDN or IP address of the database server. ie sql.test.internal
 * ``MR_SITENAME``: Customise the site name for Munki Report.
 * ``MR_TIMEZONE``: Customise the timezone, default is America/Los_Angeles
 * ``MR_CLIENT_PASSPHRASES_REQUIRED``: Enable client passphrases (YES OR NO) defaults to NO
@@ -32,6 +28,16 @@ Several options, such as the timezone and admin password are customizable using 
 * ``MR_KEEP_PREVIOUS_DISPLAYS``: Keep Previous Displays (TRUE OR FALSE) defaults to FALSE
 * ``MR_MODULES``: Set active Modules (needs testing, should be "array('phrase1','phrase2')") defaults to munkireport & diskinfo
 * ``MR_AUTH_SECURE`` Set to TRUE to enable HTTPS
+
+#####MySQL Environment Variables
+These are automatically retrieved from the  MySQL Container if available.  If not you must set these manually
+
+* ``MYSQL_ENV_MYSQL_DATABASE``: The default database name is munkireport, if you have a different database name. Set it here as per your needs. (DEFAULT from MYSQL Container)
+* ``MYSQL_ENV_MYSQL_USER``: The default user to access the database with is admin. Change here as per your needs. (DEFAULT from MYSQL Container)
+* ``MYSQL_ENV_MYSQL_PASSWORD``: The default user password to access the database is admin. Change here as per your needs. (DEFAULT from MYSQL Container)
+* ``MYSQL_PORT_3306_TCP_ADDR``: The FQDN or IP address of the database server. ie sql.test.internal (DEFAULT from MYSQL Container)
+
+####Proxy Variable Settings
 
 Munki Report is able to perform warranty lookups, however if your Munki Report server is behind a proxy this may fail.
 To avoid this, we can provide proxy server information as variables when starting the container or providing defaults
@@ -63,10 +69,27 @@ If you require more advanced settings, modify the config.php as per your needs
 
 # Running the container
 
-Running the container is quite simple.
+This container requires a MYSQL container to be running first! I'm using the core MYSQL container but any container that sets the MYSQL variables listed above can work.  If it doesn't you can always specifiy them manually during startup of the Munkireport Container.
+
+````bash
+docker run --name mr-mysql \
+  -v /usr/local/docker/mr-mysql:/var/lib/mysql \
+  -e MYSQL_ROOT_PASSWORD=ih4tjoih809ZYIOUHjk;h9 \
+  -e MYSQL_DATABASE=munkireport \
+  -e MYSQL_USER=munkireport \
+  -e MYSQL_PASSWORD=IJSDFH_(*rhojkldfn9[8]) \
+  -d mysql
+````
+
+
 
 ```bash
-$ docker run -d -p 80:80 -e DB_NAME=munkireport -e DB_USER=admin -e DB_PASS=admin -e DB_SERVER=mysql.test.internal -e MR_SITENAME=MunkiReport-MyCompany -e MR_TIMEZONE=Australia/Sydney --name munkireport_webapp hunty1/munkireport-docker
+docker run -d --name munkireport \
+  -p 80:80 \
+  --link mr-mysql:mysql \
+  -e MR_SITENAME="My Company" \
+  -e MR_MODULES="array('munkireport','diskinfo','timemachine')" \
+  mholtrlc/munkireport
 ```
 
 If you need proxy server support, either bake them into your Dockerfile, or provide them as environmentals when starting your container

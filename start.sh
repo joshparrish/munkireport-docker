@@ -3,17 +3,17 @@
 # Use the environmental variables passed to the Docker container and use them to:
 
 # Configure the Database Connection
-echo "*** Setting DB Server to $DB_SERVER ***" 
+echo "*** Setting DB Server to $MYSQL_PORT_3306_TCP_ADDR ***" 
 echo ""
-echo "*** Setting DB Name to $DB_NAME ***"
+echo "*** Setting DB Name to $MYSQL_ENV_MYSQL_DATABASE ***"
 echo ""
-sed -i "/pdo_dsn/c\$conf['pdo_dsn'] = 'mysql:host=$DB_SERVER;dbname=$DB_NAME';" /www/munkireport/config.php # Set the DB Name and Server Address
-echo "*** Setting DB User to $DB_USER ***"
+sed -i "/pdo_dsn/c\$conf['pdo_dsn'] = 'mysql:host=$MYSQL_PORT_3306_TCP_ADDR;dbname=$MYSQL_ENV_MYSQL_DATABASE';" /www/munkireport/config.php # Set the DB Name and Server Address
+echo "*** Setting DB User to $MYSQL_ENV_MYSQL_USER ***"
 echo ""
-sed -i "/pdo_user/c\$conf['pdo_user'] = '$DB_USER';" /www/munkireport/config.php # Set the DB User
-echo "*** Setting DB Password to $DB_PASS ***"
+sed -i "/pdo_user/c\$conf['pdo_user'] = '$MYSQL_ENV_MYSQL_USER';" /www/munkireport/config.php # Set the DB User
+echo "*** Setting DB Password to $MYSQL_ENV_MYSQL_PASSWORD ***"
 echo ""
-sed -i "/pdo_pass/c\$conf['pdo_pass'] = '$DB_PASS';" /www/munkireport/config.php # Set the DB Password
+sed -i "/pdo_pass/c\$conf['pdo_pass'] = '$MYSQL_ENV_MYSQL_PASSWORD';" /www/munkireport/config.php # Set the DB Password
 
 # Configure MR settings
 echo "*** Setting Munki Report Sitename to $MR_SITENAME ***"
