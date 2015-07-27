@@ -75,7 +75,11 @@ sed -i "/keep_previous_displays/c\$conf['keep_previous_displays'] = '$MR_KEEP_PR
 
 echo "*** Setting Active Modules to $MR_MODULES ***"
 echo ""
-sed -i "/modules/c\$conf['modules'] = $MR_MODULES;" /www/munkireport/config.php 
+sed -i "/'modules'/c\$conf['modules'] = $MR_MODULES;" /www/munkireport/config.php 
+
+echo "*** Setting auth_secure to $MR_AUTH_SECURE ***"
+echo ""
+sed -i "/'auth_secure'/c\$conf['auth_secure'] = $MR_AUTH_SECURE;" /www/munkireport/config.php 
 
 # Fire up PHP and then start Nginx in non daemon mode so docker has something to keep running
 echo ""

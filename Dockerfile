@@ -23,7 +23,7 @@ ENV MR_TEMPERATURE_UNIT F
 ENV MR_CLIENT_PASSPHRASES_REQUIRED NO
 ENV MR_KEEP_PREVIOUS_DISPLAYS FALSE
 ENV MR_MODULES "array('munkireport','diskinfo')"
-
+ENV MR_AUTH_SECURE FALSE
 # Define proxy setting variables for Munki report
 # set this to mod1, mod2 or no depending upon your proxy server needs. See the Readme for more info.
 ENV proxy_required no

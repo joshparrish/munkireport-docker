@@ -26,11 +26,12 @@ Several options, such as the timezone and admin password are customizable using 
 * ``DB_SERVER``: The FQDN or IP address of the database server. ie sql.test.internal
 * ``MR_SITENAME``: Customise the site name for Munki Report.
 * ``MR_TIMEZONE``: Customise the timezone, default is America/Los_Angeles
-* ``client_passphrases_required``: Enable client passphrases (YES OR NO) defaults to NO
-* ``client_passphrases``: Sets the client passphrases (needs testing, should be "array('phrase1','phrase2')")
-* ``temperature_unit``: Sets temperature Unit (C OR F) defaults to F
-* ``keep_previous_displays``: Keep Previous Displays (TRUE OR FALSE) defaults to FALSE
-* ``modules``: Set active Modules (needs testing, should be "array('phrase1','phrase2')") defaults to munkireport & diskinfo
+* ``MR_CLIENT_PASSPHRASES_REQUIRED``: Enable client passphrases (YES OR NO) defaults to NO
+* ``MR_CLIENT_PASSPHRASES``: Sets the client passphrases (needs testing, should be "array('phrase1','phrase2')")
+* ``MR_TEMPERATURE_UNIT``: Sets temperature Unit (C OR F) defaults to F
+* ``MR_KEEP_PREVIOUS_DISPLAYS``: Keep Previous Displays (TRUE OR FALSE) defaults to FALSE
+* ``MR_MODULES``: Set active Modules (needs testing, should be "array('phrase1','phrase2')") defaults to munkireport & diskinfo
+* ``MR_AUTH_SECURE`` Set to TRUE to enable HTTPS
 
 Munki Report is able to perform warranty lookups, however if your Munki Report server is behind a proxy this may fail.
 To avoid this, we can provide proxy server information as variables when starting the container or providing defaults
