@@ -1,3 +1,0 @@
-#!/bin/sh
-exec /usr/local/munki/simian_report_broken_client
-exec /usr/local/munki/mr_report_broken_client

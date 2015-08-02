@@ -1,2 +1,0 @@
-#SIMIAN SCRIPT INSTALLER
-I created this "module" in order to allow Munkireport to work with Simian.  Currently it pulls the latest preflight, postflight, and report_broken_client scripts from the simian git repo.  May switch this to pull from inside munkireport to prevent changes from being installed before the simian server is updated but not concerned at this time.
