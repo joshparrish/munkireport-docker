@@ -5,7 +5,7 @@
 	| System Defaults
 	|===============================================
 	*/
-	
+
 	$conf['index_page'] = 'index.php?';
 	$conf['vnc_link'] = "vnc://%s:5900";
 	$conf['ssh_link'] = "ssh://adminuser@%s";
@@ -59,18 +59,8 @@
 		array('warranty','power_battery_condition','power_battery_health')
 	);
 
-    /*
-	|===============================================
-	| Authorization settings
-	|===============================================
-	*/
 
-	$auth_config['root'] = '$P$BUqxGuzR2VfbSvOtjxlwsHTLIMTmuw0'; // Password is root
-    $conf['authorization']['delete_machine'] = array('admin', 'manager');
-    $conf['authorization']['global'] = array('admin');
-	$conf['roles']['admin'] = array('*');
-	$conf['groups']['admin_users'] = array('root');
-	
+
 	/*
 	|===============================================
 	| MySQL settings
@@ -81,7 +71,7 @@
 	$conf['pdo_user'] = 'admin';
 	$conf['pdo_pass'] = 'admin';
 	$conf['pdo_opts'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
-	
+
 	/*
 	|===============================================
 	| Proxy settings
@@ -120,3 +110,21 @@
 	$conf['timezone'] = @date_default_timezone_get(Australia/Sydney);
 
 	$conf['debug'] = TRUE;
+
+	/*
+|===============================================
+| Authorization settings
+|===============================================
+*/
+
+	//$conf['authorization']['delete_machine'] = array('admin', 'manager');
+	//$conf['authorization']['global'] = array('admin');
+
+	//$conf['roles']['admin'] = MR_ADMIN_GROUPS;
+	//$conf['roles']['manager'] = MR_MANAGER_GROUPS;
+	//$conf['auth']['auth_ldap']['server']      = 'MR_LDAP_SERVER'; // One or more servers separated by commas.
+	//$conf['auth']['auth_ldap']['usertree']    = 'MR_LDAP_USER_TREE'; // Where to find the user accounts.
+	//$conf['auth']['auth_ldap']['grouptree']   = 'MR_LDAP_GROUP_TREE'; // Where to find the groups.
+	//$conf['auth']['auth_ldap']['mr_allowed_groups'] = MR_LDAP_GROUPS; // For group based access, fill in groups.
+	//$conf['auth']['auth_ldap']['binddn']      = 'MR_LDAP_BINDDN'; // Optional bind DN
+	//$conf['auth']['auth_ldap']['bindpw']      = 'MR_LDAP_BINDPW'; // Optional bind password

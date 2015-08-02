@@ -28,6 +28,16 @@ Several options, such as the timezone and admin password are customizable using 
 * ``MR_KEEP_PREVIOUS_DISPLAYS``: Keep Previous Displays (TRUE OR FALSE) defaults to FALSE
 * ``MR_MODULES``: Set active Modules (needs testing, should be "array('phrase1','phrase2')") defaults to munkireport & diskinfo
 * ``MR_AUTH_SECURE`` Set to TRUE to enable HTTPS
+* ``TZ`` Set Timezone
+* ``MR_ADMIN_GROUPS`` Set Admin Groups
+* ``MR_MANAGER_GROUPS`` Set Manager Groups
+* ``MR_LDAP_SERVER`` One or more servers separated by commas.
+* ``MR_LDAP_USER_TREE`` Where to find the user accounts.
+* ``MR_LDAP_GROUP_TREE`` Where to find the groups.
+* ``MR_LDAP_GROUPS`` For group based access, fill in groups. (use array('group1','group2'))
+* ``MR_LDAP_BINDDN`` Bind DN
+* ``MD_LDAP_BINDPW`` Bind PW
+
 
 #####MySQL Environment Variables
 These are automatically retrieved from the  MySQL Container if available.  If not you must set these manually
@@ -60,10 +70,7 @@ This sets the proxy server address, port number and a username and password to u
 
 # Munki Report Login
 
-The default user and password to log in to Munki Report is:
-
-Username: root
-Password: root
+There is no default user, this setup requires LDAP.
 
 If you require more advanced settings, modify the config.php as per your needs
 
