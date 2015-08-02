@@ -3,7 +3,7 @@
 # Use the environmental variables passed to the Docker container and use them to:
 
 # Configure the Database Connection
-echo "*** Setting DB Server to $MYSQL_PORT_3306_TCP_ADDR ***" 
+echo "*** Setting DB Server to $MYSQL_PORT_3306_TCP_ADDR ***"
 echo ""
 echo "*** Setting DB Name to $MYSQL_ENV_MYSQL_DATABASE ***"
 echo ""
@@ -26,7 +26,7 @@ sed -i "/timezone/c\$conf['timezone'] = @date_default_timezone_get($MR_TIMEZONE)
 # Check to see which type of proxy server config we need
 if [ "$proxy_required" = "mod1" ];
 	then
-# Configure Proxy Settings for Warranty Lookups etc 
+# Configure Proxy Settings for Warranty Lookups etc
 echo "*** Proxy Server Mode 1 (Only server and port number) selected ***"
 echo ""
 echo "*** Setting Proxy server to $proxy_server ***"
@@ -53,7 +53,7 @@ echo "*** Setting Proxy password to $proxy_pword ***"
 echo ""
 sed -i "/proxypassword/c\$conf['proxy']['password'] = '$proxy_pword';" /www/munkireport/config.php # set the proxy password
 
-elif [ "$proxy_required" = "no" ]; 
+elif [ "$proxy_required" = "no" ];
 	then
 	echo "*** Proxy server settings are not required, skipping ***"
 fi
@@ -75,11 +75,15 @@ sed -i "/keep_previous_displays/c\$conf['keep_previous_displays'] = '$MR_KEEP_PR
 
 echo "*** Setting Active Modules to $MR_MODULES ***"
 echo ""
-sed -i "/'modules'/c\$conf['modules'] = $MR_MODULES;" /www/munkireport/config.php 
+sed -i "/'modules'/c\$conf['modules'] = $MR_MODULES;" /www/munkireport/config.php
 
 echo "*** Setting auth_secure to $MR_AUTH_SECURE ***"
 echo ""
-sed -i "/'auth_secure'/c\$conf['auth_secure'] = $MR_AUTH_SECURE;" /www/munkireport/config.php 
+sed -i "/'auth_secure'/c\$conf['auth_secure'] = $MR_AUTH_SECURE;" /www/munkireport/config.php
+
+echo "*** Setting Time Zone to $TZ ***"
+echo ""
+sed -i "/'timezone'/c\$conf['timezone'] = @date_default_timezone_get($TZ);" /www/munkireport/config.php 
 
 # Fire up PHP and then start Nginx in non daemon mode so docker has something to keep running
 echo ""
