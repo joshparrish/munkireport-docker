@@ -62,7 +62,7 @@ fi
 if [ "$MR_CLIENT_PASSPHRASES_REQUIRED" = "yes" ];
 	then
 	echo "*** Setting Client Passphreases ***"
-	sed -i "/client_passphrases/c\$onf['client_passphrases'] = array($CLIENT_PASSHRASES);" /www/munkireport/config.php # set the client passphrase(s)
+	sed -i "/client_passphrases/c\$onf['client_passphrases'] = array($MR_CLIENT_PASSHRASES);" /www/munkireport/config.php # set the client passphrase(s)
 fi
 
 echo "*** Setting Temperature Unit to $MR_TEMPERATURE_UNIT ***"
@@ -84,43 +84,47 @@ sed -i "/'auth_secure'/c\$conf['auth_secure'] = $MR_AUTH_SECURE;" /www/munkirepo
 echo "*** Setting Time Zone to $TZ ***"
 echo ""
 sed -i "/'timezone'/c\$conf['timezone'] = @date_default_timezone_get($TZ);" /www/munkireport/config.php
-echo ""
-echo "*** CONFIGURE LDAP SETTINGS***"
-echo ""
-echo ""
 
-echo "*** Setting Admin Groups to $MR_ADMIN_GROUPS ***"
-echo ""
-sed -i "/MR_ADMIN_GROUPS/c\$conf['roles']['admin'] = $MR_ADMIN_GROUPS;" /www/munkireport/config.php
 
-echo "*** Setting Manager Groups to $MR_MANAGER_GROUPS ***"
-echo ""
-sed -i "/MR_MANAGER_GROUPS/c\$conf['roles']['manager'] = $MR_MANAGER_GROUPS;" /www/munkireport/config.php
+if [ "$MR_LDAP" == "yes"]; then
 
-echo "*** Setting LDAP Server(s) to $MR_LDAP_SERVER ***"
-echo ""
-sed -i "/'MR_LDAP_SERVER'/c\$conf['auth']['auth_ldap']['server'] = '$MR_LDAP_SERVER';" /www/munkireport/config.php
+	echo ""
+	echo "*** CONFIGURE LDAP SETTINGS***"
+	echo ""
+	echo ""
 
-echo "*** Setting LDAP User Tree to $MR_LDAP_USER_TREE ***"
-echo ""
-sed -i "/'MR_LDAP_USER_TREE'/c\$conf['auth']['auth_ldap']['usertree'] = '$MR_LDAP_USER_TREE';" /www/munkireport/config.php
+	echo "*** Setting Admin Groups to $MR_ADMIN_GROUPS ***"
+	echo ""
+	sed -i "/MR_ADMIN_GROUPS/c\$conf['roles']['admin'] = $MR_ADMIN_GROUPS;" /www/munkireport/config.php
 
-echo "*** Setting LDAP Group Tree to $MR_LDAP_GROUP_TREE ***"
-echo ""
-sed -i "/'MR_LDAP_GROUP_TREE'/c\$conf['auth']['auth_ldap']['grouptree'] = '$MR_LDAP_GROUP_TREE';" /www/munkireport/config.php
+	echo "*** Setting Manager Groups to $MR_MANAGER_GROUPS ***"
+	echo ""
+	sed -i "/MR_MANAGER_GROUPS/c\$conf['roles']['manager'] = $MR_MANAGER_GROUPS;" /www/munkireport/config.php
 
-echo "*** Setting Authorized Groups to $MR_LDAP_GROUPS ***"
-echo ""
-sed -i "/MR_LDAP_GROUPS/c\$conf['auth']['auth_ldap']['mr_allowed_groups'] = $MR_LDAP_GROUPS;" /www/munkireport/config.php
+	echo "*** Setting LDAP Server(s) to $MR_LDAP_SERVER ***"
+	echo ""
+	sed -i "/'MR_LDAP_SERVER'/c\$conf['auth']['auth_ldap']['server'] = '$MR_LDAP_SERVER';" /www/munkireport/config.php
 
-echo "*** Setting Bind User to $MR_LDAP_BINDDN ***"
-echo ""
-sed -i "/'MR_LDAP_BINDDN'/c\$conf['auth']['auth_ldap']['binddn'] = '$MR_LDAP_BINDDN';" /www/munkireport/config.php
+	echo "*** Setting LDAP User Tree to $MR_LDAP_USER_TREE ***"
+	echo ""
+	sed -i "/'MR_LDAP_USER_TREE'/c\$conf['auth']['auth_ldap']['usertree'] = '$MR_LDAP_USER_TREE';" /www/munkireport/config.php
 
-echo "*** Setting Bind Password to $MR_LDAP_BINDPW ***"
-echo ""
-sed -i "/'MR_LDAP_BINDPW'/c\$conf['auth']['auth_ldap']['bindpw'] = '$MR_LDAP_BINDPW';" /www/munkireport/config.php
+	echo "*** Setting LDAP Group Tree to $MR_LDAP_GROUP_TREE ***"
+	echo ""
+	sed -i "/'MR_LDAP_GROUP_TREE'/c\$conf['auth']['auth_ldap']['grouptree'] = '$MR_LDAP_GROUP_TREE';" /www/munkireport/config.php
 
+	echo "*** Setting Authorized Groups to $MR_LDAP_GROUPS ***"
+	echo ""
+	sed -i "/MR_LDAP_GROUPS/c\$conf['auth']['auth_ldap']['mr_allowed_groups'] = $MR_LDAP_GROUPS;" /www/munkireport/config.php
+
+	echo "*** Setting Bind User to $MR_LDAP_BINDDN ***"
+	echo ""
+	sed -i "/'MR_LDAP_BINDDN'/c\$conf['auth']['auth_ldap']['binddn'] = '$MR_LDAP_BINDDN';" /www/munkireport/config.php
+
+	echo "*** Setting Bind Password to $MR_LDAP_BINDPW ***"
+	echo ""
+	sed -i "/'MR_LDAP_BINDPW'/c\$conf['auth']['auth_ldap']['bindpw'] = '$MR_LDAP_BINDPW';" /www/munkireport/config.php
+fi
 
 # Fire up PHP and then start Nginx in non daemon mode so docker has something to keep running
 echo ""
