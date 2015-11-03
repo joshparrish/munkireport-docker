@@ -31,6 +31,7 @@ ENV proxy_server proxy.example.com
 ENV proxy_uname proxyuser
 ENV proxy_pword proxypassword
 ENV proxy_port 8080
+ENV MR_LDAP no
 
 # Install base packages for MR
 RUN apt-get update && \
@@ -59,7 +60,6 @@ RUN mkdir -p /www/munkireport && \
 # Add our config.php file and nginx configs
 ADD config.php /www/munkireport/config.php
 ADD munki-report.conf /etc/nginx/sites-enabled/munki-report.conf
-#ADD rlc_scripts /www/munkireport/app/modules/rlc_scripts
 ADD nginx.conf /etc/nginx/nginx.conf
 
 # Set up logs to output to stout and stderr

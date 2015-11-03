@@ -85,8 +85,14 @@ echo "*** Setting Time Zone to $TZ ***"
 echo ""
 sed -i "/'timezone'/c\$conf['timezone'] = @date_default_timezone_get($TZ);" /www/munkireport/config.php
 
-
-if [ "$MR_LDAP" == "yes"]; then
+if [ "$MR_LDAP" = "no"]; then
+	if [ "$MR_ADMIN_LOGIN" ]; then
+		sed -i "/MR_ADMIN_LOGIN/c\$auth_config['$MR_ADMIN_LOGIN'] = $MR_ADMIN_PASSWORD;" /www/munkireport/config.php
+	else
+		sed -i "/MR_ADMIN_LOGIN/c\$auth_config['root'] = '$P$BUqxGuzR2VfbSvOtjxlwsHTLIMTmuw0';" /www/munkireport/config.php
+	fi
+fi
+if [ "$MR_LDAP" = "yes"]; then
 
 	echo ""
 	echo "*** CONFIGURE LDAP SETTINGS***"
