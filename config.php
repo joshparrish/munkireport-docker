@@ -116,7 +116,6 @@
 | Authorization settings
 |===============================================
 */
-  //$auth_config['root'] = '$P$BUqxGuzR2VfbSvOtjxlwsHTLIMTmuw0';
 
 	//$conf['authorization']['delete_machine'] = array('admin', 'manager');
 	//$conf['authorization']['global'] = array('admin');

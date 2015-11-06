@@ -71,23 +71,9 @@ This sets the proxy server address, port number and a username and password to u
 
 # Munki Report Login
 
-If not using LDAP, The default user and password to log in to Munki Report is:
+There is no default user, this setup requires LDAP.
 
-Username: ``root`` Password: ``root``
-
-If you wish to customize the default login you can do so by spinning up MunkiReport and then going to <your_url>/index.php?/auth/generate.  
-Doing so will generate a string like this:
-````bash
-$auth_config['test'] = '$P$BoVNNY50sXKKazabm1a7XuGgyz8Y1/1';
-````
-
-Take the username (in this case test) and set the following Variable:
-``$MR_ADMIN_LOGIN = 'test'``
-
-Take the password hash and set the following Variable:
-``$MR_ADMIN_PASSWORD = 'BoVNNY50sXKKazabm1a7XuGgyz8Y1'``
-
-If you require more advanced settings with multiple users, modify the config.php inside the docker repo as per your needs for every additional user beyond your master admin user.
+If you require more advanced settings, modify the config.php as per your needs
 
 # Running the container
 
