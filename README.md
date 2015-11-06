@@ -31,7 +31,6 @@ Several options, such as the timezone and admin password are customizable using 
 * ``TZ`` Set Timezone
 * ``MR_ADMIN_GROUPS`` Set Admin Groups
 * ``MR_MANAGER_GROUPS`` Set Manager Groups
-* ``MR_LDAP`` set to yes if using LDAP
 * ``MR_LDAP_SERVER`` One or more servers separated by commas.
 * ``MR_LDAP_USER_TREE`` Where to find the user accounts.
 * ``MR_LDAP_GROUP_TREE`` Where to find the groups.
